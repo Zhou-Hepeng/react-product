@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { Switch, Route, Redirect, HashRouter } from 'react-router-dom'
 import { asyncComponent } from '@/utils'
-import { Brand } from '@/view'
+import { Brand, Series } from '@/view'
 
 // import Brand from '@/view/Brand'
-const Series = asyncComponent(() => import('@/view/Series'))
+// const Series = asyncComponent(() => import('@/view/Series/index'))
 
 export default class RouteConfig extends Component {
   render() {

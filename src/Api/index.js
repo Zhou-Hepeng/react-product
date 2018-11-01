@@ -1,5 +1,1 @@
-import Brand from './Brand'
-
-export default {
-  Brand
-}
+export { default as Brand } from './Brand'

@@ -1,73 +1,58 @@
 import React, { Component } from 'react'
-import './style.less'
+import css from './style.less'
 import { Link } from 'react-router-dom'
 import { Request } from '@/utils'
-import Api from '@/Api'
-import Bold from '../Bold'
-
+import { Brand } from '@/Api'
+import { BrandModel, IndexNav } from '@/components/Brand'
 // 主布局
 class BrandView extends Component {
   constructor() {
     super()
-    console.log('constructor')
+    this.state = {
+      brandList: [
+        { name: '北标兵', src: 'nihao' },
+        { name: '北炮兵', src: 'nihao' },
+        { name: '奔北坡', src: 'nihao' }
+      ],
+      letter: ['A', 'B', 'C', 'D'],
+      recommend: []
+    }
   }
-  // async componentDidMount() {
-  //   console.log(Api, 'Brand')
-  //   const { data } = await Request(
-  //     'GET',
-  //     '/index.php?r=api/brand/gethotbrandlists&haveGroup=1&noIndex=1&isW=2',
-  //     {}
-  //   )
-  //   console.log(data, '请求回来数据')
-  // }
+  async componentDidMount() {
+    // const data = await Brand.getBrandList({})
+    // if (data && data.info === 'ok') {
+    //   const { brandList, letter, recommend } = data
+    //   this.setState({
+    //     brandList,
+    //     letter,
+    //     recommend
+    //   })
+    // }
+    // console.log(data, '请求的')
+  }
   componentWillMount() {
     console.log('componentWillMount')
   }
   componentDidUpdate() {}
+
+  // 跳转锚点
+  anchor(item) {
+    console.log(item)
+  }
   render() {
+    const { letter, brandList } = this.state
     return (
-      <div className="App">
-        {console.log(111)}
-        <Link to="/series" className="goto">跳转车系</Link>
-        {/* <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p> */}
-        {/* <IndexNav></IndexNav> */}
-        <Bold />
+      <div className={css.App}>
+        <Link to="/series" className={css.goto}>
+          跳转
+        </Link>
+        {/* IndexNav导航 */}
+        {letter.length && <IndexNav letter={letter} onClick={this.anchor} />}
+        {/* 品牌列表 */}
+        {brandList.length &&
+          brandList.map(item => <BrandModel key={item.name} item={item} />)}
       </div>
     )
   }
 }
-
-function Square(props) {
-  return (
-    <div>
-      <button className="square">你好啊</button>
-    </div>
-  )
-}
-
-class Board extends Component {
-  // constructor(props) {
-  //   super()
-  //   console.log(props)
-  // }
-  renderSquare(i) {
-    return <Square />
-  }
-  return() {
-    return (
-      <div>
-        <div className="board-row">{this.renderSquare(0)}</div>
-        <div className="board-row">{this.renderSquare(3)}</div>
-        <div className="board-row">{this.renderSquare(6)}</div>
-      </div>
-    )
-  }
-}
-
 export default BrandView

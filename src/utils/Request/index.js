@@ -29,19 +29,14 @@ export default function Request(method, url, params) {
     axios.request(options).then(
       res => {
         if (res.status === 200) {
-          resolve(res)
+          resolve(res.data)
         } else {
           alert(res.msg)
         }
       },
       error => {
         alert('网络错误~')
-        console.log(error,'error')
-        // if (error.response) {
-        //   reject(error.response)
-        // } else {
-        //   reject(error)
-        // }
+        console.log(error, 'error')
       }
     )
   })

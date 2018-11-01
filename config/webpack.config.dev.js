@@ -9,7 +9,8 @@ const eslintFormatter = require('react-dev-utils/eslintFormatter')
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin')
 const getClientEnvironment = require('./env')
 const paths = require('./paths')
-const px2rem = require('postcss-px2rem');
+// 移动端屏幕渲染
+const px2rem = require('postcss-px2rem')
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // In development, we always serve from the root. This makes config easier.
@@ -160,7 +161,8 @@ module.exports = {
               {
                 loader: require.resolve('css-loader'),
                 options: {
-                  importLoaders: 1
+                  importLoaders: 1,
+                  modules: true // 是否启动css局部作用域
                 }
               },
               {
@@ -180,13 +182,13 @@ module.exports = {
                       ],
                       flexbox: 'no-2009'
                     }),
-                    px2rem({remUnit: 75})//设计稿根据750px(iphone6)
+                    px2rem({ remUnit: 75 }) //设计稿根据750px(iphone6)
                   ]
                 }
               },
               {
                 loader: require.resolve('less-loader')
-              },
+              }
             ]
           },
           // "file" loader makes sure those assets get served by WebpackDevServer.
@@ -204,7 +206,7 @@ module.exports = {
             options: {
               name: 'static/media/[name].[hash:8].[ext]'
             }
-          },
+          }
         ]
       }
       // ** STOP ** Are you adding a new loader?
