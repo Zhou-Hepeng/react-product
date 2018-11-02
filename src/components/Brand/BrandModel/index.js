@@ -6,12 +6,15 @@ export default class BrandModel extends Component {
     console.log(props, 'props1')
   }
   render() {
-    const { item } = this.props
-    console.log(item, 'item')
+    const { brandList } = this.props
     return (
       <div className="nihao">
-        <img src={item.img} alt={item.name} />
-        <span>{item.name}</span>
+        {brandList.length && brandList.map(item => (
+          <div key={item.name}>
+            <img src={item.img} alt={item.name} />
+            <span>{item.name}</span>
+          </div>
+        ))}
       </div>
     )
   }
